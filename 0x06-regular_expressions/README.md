@@ -55,3 +55,8 @@ argument passed to it via the command line._
   * [101-passed_linkedin_regex_challenge.jpg](./101-passed_linkedin_regex_challenge.jpg):
   Screenshot signifying completion of the
   [LinkedIn Engineering Regex Puzzle](https://engineering.linkedin.com/puzzle).
+
+
+# Author 📝
+
+[Mustapha Aliyu Galadima](https://github.com/MG-Musty/)
