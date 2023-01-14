@@ -13,10 +13,10 @@
 * Go to your profile edit the SSH PUBLIC KEY copy and paste the public key of the school.pub key save it.
 * Then ask for a new server.
 * `Vim` / open the file config in your root directory edit `(HOST to the ip address on your server)` add this `( PublicKeyAuthentication yes)` save it.
-* Run the command `( echo YOUR-PUBLIC-KEY-IN-SCHOOL.PUB >> ~/.ssh/authorized_key)`
+* Run the command `( echo YOUR-PUBLIC-KEY-IN-SCHOOL.PUB >> ~/.ssh/authorized_keyS)`
 Then refresh your server by `/etc/init.d/ssh restart`
 * Finally run  `(  ssh - v ubuntu@YOUR-IP)`
-* *Bonus* : Do this for the task to add the key given to us   `( echo YOUR-PUBLIC-KEY-IN-SCHOOL.PUB >> ~/.ssh/authorized_key)`
+* *Bonus* : Do this for the task to add the key given to us   `( echo YOUR-PUBLIC-KEY-IN-SCHOOL.PUB >> ~/.ssh/authorized_keyS)`
 
 # 📚 Author 🖋️
 
