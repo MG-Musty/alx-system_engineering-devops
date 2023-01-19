@@ -7,17 +7,6 @@
 
 # SOLUTION GETTING THE CONFIGURATION TO THE WEB_SERVER-02
 
-* Go to you root directory `( cd ~)`
-`( cd .ssh)` directory
-* `( ls - la)` to all the files inside the didirecto, reason to be sure if you have the required files in it, don't touch anything not yet.
-* Generate a new key using the name any name `web-02`. Remember we are doing all this in the root directory `( cd ~)`. 
-* Then ask for a new server for `web-02`.
-* `Vim` / open the file `config` in your `/root/.ssh/` directory edit `Add a new-line HOST with the web-02 ip_address` save it.
-* Run the command `( echo YOUR-PUBLIC-KEY-IN-WEB-02 >> ~/.ssh/authorized_keys)`
-* Then refresh your server by `/etc/init.d/ssh restart`
-* Finally run  `(  ssh -v ubuntu@WEB-02-IP)`
-
-WAHLAH! YOU IN!!!
 
 # 📚 Author 🖋️
 
