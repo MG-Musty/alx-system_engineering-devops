@@ -193,7 +193,9 @@ $ echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority
     | sudo tee /etc/apt/preferences.d/99nginx
 ```
 
+* Next, modify the index.html files for each web server.
 
+### For Web Server 1.
 
 # 📚 Author 🖋️
 
