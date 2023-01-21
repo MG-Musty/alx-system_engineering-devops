@@ -15,6 +15,7 @@ Make sure you `cd 92429-lb-01 server` example `ssh ubuntu@ip_address`.
 $ sudo apt update
 $ sudo apt show haproxy
 ```
+
 ![image](https://user-images.githubusercontent.com/106968663/213882857-4193c4a0-37eb-4f0b-90c2-19e05eabc100.png)
 
 * But the latest long term support release is HAProxy is 2.6, So to install HAProxy 2.6, first enable PPA repository, run following command
@@ -22,32 +23,38 @@ $ sudo apt show haproxy
 ```
 $ sudo add-apt-repository ppa:vbernat/haproxy-2.6 -y
 ```
+
 * Now install haproxy 2.6 by executing the following commands
 
 ```
 $ sudo apt update
 $ sudo apt install -y haproxy=2.6.\*
 ```
+
 * Once installed, confirm the version of HAProxy installed as shown
 
 ```
 $ haproxy -v
 ```
+
 ![image](https://user-images.githubusercontent.com/106968663/213885697-2f06bfbd-5e67-4402-95ca-b407613799de.png)
+
 
 * Upon installation, the HAProxy service starts by default and listens to TCP  port 80. To verify HAProxy is running, run the command
 
-``
+```
 $ sudo systemctl status haproxy
 ```
 
 ![image](https://user-images.githubusercontent.com/106968663/213885761-6a6feec9-c360-4507-9592-09973f578785.png)
+
 
 * It’s recommended to enable the service to auto-start on very system reboot as shown.
 
 ```
 $ sudo systemctl enable haproxy
 ```
+
 ### Step 2) Configure HAProxy
 
 * The next step is to configure HAProxy to distribute traffic evenly between two web servers. The configuration file for haproxy is `/etc/haproxy/haproxy.cfg`.
@@ -57,17 +64,19 @@ $ sudo systemctl enable haproxy
 ```
 $ sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bk
 ```
+
 * Then open the file using your preferred text editor. Here, we are using Nano
 
 ```
 $ sudo nano /etc/haproxy/haproxy.cfg
 ```
+
 ### Haproxy configuration file is made up of the following sections:
 
-* *global*: This is the first section that you see at the very top. It contains system-wide settings that handle performance tuning and security.
-* *defaults*: As the name suggests, this section contains settings that should work well without additional customization. These settings include timeout and error reporting configurations.
-* *frontend and backend*: These are the settings that define the frontend and backend settings. For the frontend, we will define the HAProxy server as the front end which will distribute requests to the backend servers which are the webservers. We will also set HAProxy to use round robbin load balancing criteria for distributing traffic.
-* *listen*: This is an optional setting that enables you to enable monitoring of HAProxy statistics.
+* **global**: This is the first section that you see at the very top. It contains system-wide settings that handle performance tuning and security.
+* **defaults**: As the name suggests, this section contains settings that should work well without additional customization. These settings include timeout and error reporting configurations.
+* **frontend and backend**: These are the settings that define the frontend and backend settings. For the frontend, we will define the HAProxy server as the front end which will distribute requests to the backend servers which are the webservers. We will also set HAProxy to use round robbin load balancing criteria for distributing traffic.
+* **listen**: This is an optional setting that enables you to enable monitoring of HAProxy statistics.
 
 ### Now define the frontend and backend settings:
 
@@ -83,6 +92,7 @@ backend web-servers
     server 12345-web1 10.128.0.27:80 check
     server 12345-web2 10.128.0.26:80 check
 ```
+
 * In order to enable viewing the HAProxy statistics from a browser, add the following `‘listen’ section`.
 
 ```
@@ -102,6 +112,7 @@ listen stats
 ```
 $ sudo systemctl restart haproxy
 ```
+
 * Next edit the `/etc/hosts` file.
 
 ```
@@ -115,6 +126,7 @@ $ sudo /etc/hosts
 10.128.0.27 web1
 10.128.0.27 web2
 ```
+
 * Save the changes and exit.
 
 ### Step 3) Configure Web Servers.
@@ -129,6 +141,7 @@ $ sudo /etc/hosts
 $ sudo apt update
 $ sudo apt install nginx
 ```
+
 * Install the prerequisites:
 
 ```
