@@ -197,6 +197,71 @@ $ echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority
 
 ### For Web Server 1.
 
+* Switch to the root user on your `Web-01`.
+
+```
+$ sudo su
+```
+
+* Then run the following command for HTTP header response.
+
+```
+# echo "<H1>Hello! This is webserver1: LB-IP-10.128.0.27 </H1>" > /var/www/html/index.html
+```
+
+### For Web Server 2.
+
+* Similarly, switch to the root user in `Web-02`.
+
+```
+$ sudo su
+```
+
+* And create the index.html file as shown.
+
+```
+# echo "<H1>Hello! This is webserver2: LB-IP-10.128.0.26 </H1>" > /var/www/html/index.html
+```
+
+* Next, configure the `/etc/hosts` file.
+
+```
+$ sudo nano /etc/hosts
+```
+
+* Add the HAProxy entry to each node.
+
+```
+> LB-IP-10.128.0.26 haproxy
+```
+
+* Save the changes and exit the configuration file.
+
+![Adding of haproxy](https://user-images.githubusercontent.com/106968663/213918521-a8e52049-7c11-4641-8b85-7f55f47291fd.png)
+
+* Be sure you can ping the HAProxy server from each of the web server nodes.
+
+```
+$ ping haproxy -c 3
+```
+
+![add haproxy](https://user-images.githubusercontent.com/106968663/213918711-8cf3385c-1406-4b0c-9a3f-160d9b6d16a5.png)
+
+### Step 4) Test HAProxy Load Balancing.
+
+* Run the following command to finalize your configuration.
+
+```
+$ sudo service haproxy restart
+$ systemctl status haproxy.service
+```
+
+* Up until this point, we have successfully configured our HAProxy and both of the back-end web servers.
+* The server will show `/HTTP/1.1 200 Ok`.
+
+![Load Balancer Image with Nginx](https://user-images.githubusercontent.com/106968663/213919020-1bf87207-5557-48e6-899d-11caaf60a0bf.png)
+
+
 # 📚 Author 🖋️
 
 [Mustapha Aliyu Galadima](https://github.com/MG-Musty/)
